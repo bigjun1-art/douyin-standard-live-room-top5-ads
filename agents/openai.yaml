@@ -1,0 +1,4 @@
+interface:
+  display_name: "抖音直播间官号 Top5 投放"
+  short_description: "按官号近七日 GMV Top5 和 VV Top5 参数化创建直播间投放"
+  default_prompt: "使用 $douyin-standard-live-room-top5-ads 预演官号 Top5 投放，核对广告主后执行并回读。"
