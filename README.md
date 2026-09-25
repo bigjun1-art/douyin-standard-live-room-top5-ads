@@ -34,3 +34,7 @@ node scripts/validate-repository.mjs
 ## English summary
 
 Codex Skill for authorized Douyin Local Ads automation on macOS using the user's logged-in Chrome session. Mutating runners are preview-only by default and require explicit target confirmation plus readback. No credentials, cookies, tokens, production identifiers, or business data are included.
+
+## 后台优先与前台兜底
+
+优先已授权的端口/浏览器后台连接、参数化脚本与接口。后台确实受阻时，先说明原因与占用范围，再按当前授权采用最少必要的前台操作；不绕过权限，不重复提交未决写入。完整执行参数与回读要求见 [SKILL.md](SKILL.md)。

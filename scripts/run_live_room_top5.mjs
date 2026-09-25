@@ -217,11 +217,7 @@ function browserMaterialResolveJob(args) {
       const body = { ...cap.body, cursor: String(cursor || "0"), pageSize: 100, startTime: sourceStart, endTime: sourceEnd };
       let r = await fetch(cap.url, { method: "POST", credentials: "include", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
       let j = await r.json();
-      if (Number(j.status_code ?? j.code) === 40010) {
-        await new Promise((resolve) => setTimeout(resolve, 1200));
-        r = await fetch(cap.url, { method: "POST", credentials: "include", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
-        j = await r.json();
-      }
+      check(Number(j.status_code ?? j.code) !== 40010, "BACKEND_CALL_PROHIBITED: stop without retry or foreground fallback");
       check(r.ok && Number(j.status_code ?? j.code) === 0, `MATERIAL_PAGE_FAILED page=${page + 1}`);
       videos.push(...(j.data?.videoList || [])); cursor = j.data?.cursor; more = Boolean(j.data?.hasMore);
       if (!cursor) break;
